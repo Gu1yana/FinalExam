@@ -51,11 +51,19 @@
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item active">
+                        
+
                             <a class="nav-link" href="index.html">
                                 Home
                                 <span class="sr-only">(current)</span>
                             </a>
                         </li>
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="Admin" asp-action="Index" asp-controller="Dashboard">Admin</a>
+                            </li>
+                        }
                         <li class="nav-item">
                             <a class="nav-link" href="products.html">Our Products</a>
                         </li>
@@ -65,6 +73,20 @@
                         <li class="nav-item">
                             <a class="nav-link" href="contact.html">Contact Us</a>
                         </li>
+                        @if(User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item">
+                                <p>Hello, @User.Identity.Name</p>
+                                <a class="btn btn-outline-danger" asp-action="Logout" asp-controller="Account">Logout</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" asp-action="Login" asp-controller="Account">Sign In</a>
+                            </li>
+                        }
+
                     </ul>
                 </div>
             </div>

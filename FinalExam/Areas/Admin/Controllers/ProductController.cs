@@ -1,6 +1,7 @@
 ﻿using FinalExam.DataAccessLayer;
 using FinalExam.Models;
 using FinalExam.ViewModels.ProductVM;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Text;
@@ -8,6 +9,7 @@ using System.Text;
 namespace FinalExam.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles ="Admin, Moderator, SuperAdmin")]
     public class ProductController(ExamDbContext _context) : Controller
     {
         public async Task<IActionResult> Index()

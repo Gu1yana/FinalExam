@@ -40,7 +40,46 @@ namespace FinalExam.Controllers
             return RedirectToAction(nameof(Login));
         }
 
-
+        [HttpPost]
+        public async Task<IActionResult> Login(LoginVM vm, string? ReturnUrl)
+        {
+            if (!ModelState.IsValid) return View(vm);
+            AppUser? user = null;
+            if (vm.UsernameOrEmail.Contains('@'))
+            {
+                user = await _userManager.FindByEmailAsync(vm.UsernameOrEmail);
+            }
+            else
+            {
+                user = await _userManager.FindByNameAsync(vm.UsernameOrEmail);
+            }
+            var result = await _signInManager.PasswordSignInAsync(vm.UsernameOrEmail, vm.Password, true, true);
+            if (!result.Succeeded)
+            {
+                if (result.IsLockedOut)
+                {
+                    ModelState.AddModelError("", "User account locked out");
+                    return View();
+                }
+                if (result.IsNotAllowed)
+                {
+                    ModelState.AddModelError(" ", "User in bloked, calling admin please");
+                    return View();
+                }
+                else
+                {
+                    ModelState.AddModelError(" ", "Username or email is not true");
+                }
+            }         
+            if(ReturnUrl is not null)
+                return LocalRedirect(ReturnUrl);
+            return RedirectToAction("Index", "Home");
+        }
+        public async Task<IActionResult> Logout()
+        {
+            await _signInManager.SignOutAsync();
+            return RedirectToAction("Index", "Home");
+        }
 
         [HttpGet]
         public async Task<IActionResult> CreatedRoles()

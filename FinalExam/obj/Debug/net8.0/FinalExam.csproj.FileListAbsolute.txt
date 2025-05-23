@@ -261,3 +261,4 @@ C:\Users\l novbe\Desktop\FINAL\FinalExam\FinalExam\bin\Debug\net8.0\Microsoft.As
 C:\Users\l novbe\Desktop\FINAL\FinalExam\FinalExam\bin\Debug\net8.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
 C:\Users\l novbe\Desktop\FINAL\FinalExam\FinalExam\bin\Debug\net8.0\Microsoft.Extensions.Identity.Core.dll
 C:\Users\l novbe\Desktop\FINAL\FinalExam\FinalExam\bin\Debug\net8.0\Microsoft.Extensions.Identity.Stores.dll
+C:\Users\l novbe\Desktop\FINAL\FinalExam\FinalExam\obj\Debug\net8.0\FinalExam.sourcelink.json
