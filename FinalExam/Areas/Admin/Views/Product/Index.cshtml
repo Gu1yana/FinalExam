@@ -1,0 +1,37 @@
+﻿@model List<ProductGetVM>
+@{
+    int order = 1;
+}
+<table class="table">
+    <thead>
+        <a asp-action="Create" class="btn btn-outline-primary">Create</a>
+
+        <tr>
+            <th scope="col">No</th>
+            <th scope="col">Image</th>
+            <th scope="col">Title</th>
+            <th scope="col">Description</th>
+            <th scope="col">Reviews</th>
+            <th scope="col">Price</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var product in Model)
+        {
+            <tr>
+                <th scope="row">@(order++)</th>
+                <td><img width="70" src="~/productsImg/@product.ImageUrl" /></td>
+                <td>@product.Title</td>
+                <td>@product.Description</td>
+                <td>@product.Reviews</td>
+                <td>@product.Price</td>
+                <td>
+                    <a class="btn btn-danger" asp-action="Update" asp-controller="Product" asp-route-id="@product.Id">Update</a>
+                    <a class="btn btn-warning" asp-action="Delete" asp-controller="Product" asp-route-id="@product.Id">Delete</a>
+                    </td>
+            </tr>
+        }
+       
+    </tbody>
+</table>
